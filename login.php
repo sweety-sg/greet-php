@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no">
         <link rel= "stylesheet" href="signup.css">
-        <link rel="icon" href="images/favicon.ico">
+        <link rel="icon" href="https://www.freeiconspng.com/thumbs/handshake-icon/handshake-icon-16.png">
         <script src="https://kit.fontawesome.com/9499724b17.js" crossorigin="anonymous"></script>
     </head>
     <body>

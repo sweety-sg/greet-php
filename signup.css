@@ -39,7 +39,7 @@ option{
     flex-direction: row !important;
 }
 .field input{
-    height: 1.8rem;
+    min-height: 1.8rem;
     width: 100%;
     padding: 0.3rem ;
     font-size: 20px;
@@ -140,4 +140,8 @@ transform: scale(1.01);
 
 .search input.active{
     pointer-events: auto;
+}
+.navigate{
+    width:100% !important ;
+    padding: 1rem;
 }

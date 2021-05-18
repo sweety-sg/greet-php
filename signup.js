@@ -65,6 +65,10 @@ function agef(){
 function emailf(){
     var email = document.getElementById('email').value;
     var emailregex = /^\w[\w_.]*@[A-Za-z]+(\.[A-Za-z]+)+$/g ;
+    if(email ==""){
+        document.getElementById('emailerror').innerHTML = " ";
+        return true;
+    }
     if(emailregex.test(email)){
         document.getElementById('emailerror').innerHTML = " ";
         return true;
@@ -126,31 +130,83 @@ function verify(){
     var pwd = document.getElementById('pwd').value;
     var pwd2 = document.getElementById('pwd2').value;
     var phn = document.getElementById('phn-no').value;
+    var usname=document.getElementById( "username" ).value;
     
-    
-    if(name==""||age==""|| gender==""||email==""||pwd==""||pwd2==""||phn==""){
-        document.getElementById('incomplete-error').innerHTML = "Kindly fill all the fields"
+    if(name==""||age==""|| gender==""||pwd==""||pwd2==""||phn==""||usname==""){
+        document.getElementById('incomplete-error').innerHTML = "Kindly fill all the required fields"
         return false;
     }
     else{
         document.getElementById('incomplete-error').innerHTML = ""
     }
-    if(emailf()&&pwdf()&&pwd2f()&&namef()&&agef()&&emailf()&&phnf()==true){
+    if(emailf()&&pwdf()&&pwd2f()&&namef()&&agef()&&phnf()&unamef()==true){
         console.log('true');
         alert('sign-up successful');
-        sendData();
         submit.click();
-        return true;
+        location.href = 'add-picture.php' ;
+          return true;
         
     }
     else{
         alert('sign-up error');
         console.log('false');
         console.log(pwdf());
+        console.log(emailf());
+        console.log(unamef());
         return false;
         
     }
 
+}
+
+function unamef(){
+    var usname=document.getElementById( "username" ).value;
+    data = {user: usname};
+    var str= usname;
+    var boo;
+    
+    if(usname==""){
+        document.getElementById('unameerror').innerHTML= "";
+    }
+    if(usname!=""){
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if(this.readyState==4 && this.status==200){
+                    console.log("done");
+                    console.log(this.responseText);
+                    if (this.responseText == "1") {
+                        document.getElementById('unameerror').innerHTML= "Unique";
+                        document.getElementById('unameerror').style.color= "green";
+                        boo=1;
+                        return true;
+                        
+                      }
+                      if (this.responseText == "0"){
+                          document.getElementById('unameerror').innerHTML="Username already exists";
+                          document.getElementById('unameerror').style.color= "red";
+                          boo=0;
+                          return false;
+                      }
+                
+            }
+        };
+        xhr.open("GET", "checkdata.php?q="+str,true);
+        // xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
+        xhr.send();
+        // var data= {};
+        // data.username = usname;
+                    xhr.onerror = function(evt)
+                    {
+                      alert("Error!");
+                    }           
+                    if(document.getElementById('unameerror').innerHTML= "Unique"){
+                        return true;
+                    }  
+                    else{
+                        return false;
+                    }  
+    }
+    
 }
 
 const form = document.querySelector(" .signup form");
@@ -163,25 +219,15 @@ const dpsubmit = document.getElementById('dp-submit');
 //     e.preventDefault();
     
 // }
-function sendData(){
-        console.log("sending");
-        let xhr = new XMLHttpRequest;
-        xhr.open("POST", "signup.php",true);
-        xhr.onload=()=>{
-            console.log(xhr.status);
-            console.log(xhr.readyState);
-            if(xhr.readyState== XMLHttpRequest.DONE){
-                if(xhr.status==200){
-                    let data= xhr.response;
-                    console.log(data);
-                    
-                }
-            }
-        }
-        let formdata= new FormData(form);
-        xhr.send(formdata);
-    
+function validpic(){
+    var form = document.querySelector('form');
+        console.log("validating picture");
+       
+           form.submit;
+           location.href = 'users.php'
+        
 }
+if ( window.history.replaceState ) { window.history.replaceState( null, null, window.location.href ); }
 
 
 
