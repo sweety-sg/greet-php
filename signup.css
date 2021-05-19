@@ -72,6 +72,7 @@ option{
 /* users */
 .users.box{
     width: 500px; 
+    height: 900px;
 }
 .users header{
 display: flex;
@@ -117,11 +118,11 @@ height: 80px;
 }
 .users a{
     text-decoration: none;
-    color: #575757;
 }
 .users-list{
     padding: 0.5rem;
     font-size: 20px;
+    height: 580px;
     overflow-y: scroll;
 }
 .users-list .content{
@@ -132,7 +133,11 @@ border-bottom: solid 1px #e6e6e6;
 justify-content: flex-start;
 height: 60px;
 font-size: 20px;
+color: black;
 }
+.details .light{
+    color: #575757;
+} 
 .users-list .content:hover{
 transform: scale(1.01);
 }

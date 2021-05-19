@@ -1,6 +1,6 @@
-// window.onload = () =>{
-//     document.querySelector(".navigate .user-btn").click();
-// }
+window.onload = () =>{
+    document.querySelector(".navigate .user-btn").click();
+}
 var upbox = document.querySelector(".update");
 var userbox = document.querySelector(".users");
 function upnav(){
@@ -83,7 +83,7 @@ function phnf(){
 function unamef(){
     var usname=document.getElementById( "username" ).value;
     var str= usname;
-    var unameerror = document.getElementById('unameerror').innerHTML
+    var unameerror = document.getElementById('unameerror');
     if(usname==""){
         document.getElementById('unameerror').innerHTML= "";
     }
@@ -96,18 +96,19 @@ function unamef(){
                     if (this.responseText == "1") {
                         document.getElementById('unameerror').innerHTML= "Unique";
                         document.getElementById('unameerror').style.color= "green";
-                        
+                        unameerror.classList.remove("error");
                         return true;
                         
                       }
                       if (this.responseText == "0"){
                           document.getElementById('unameerror').innerHTML="Username already exists";
                           document.getElementById('unameerror').style.color= "red";
-                          
+                          unameerror.classList.add("error");
                           return false;
                       }
                       if (this.responseText == "2"){
                         document.getElementById('unameerror').innerHTML= "";
+                        unameerror.classList.remove("error");
                         // document.getElementById('unameerror').style.color= "green";
                       }
             }
@@ -119,7 +120,7 @@ function unamef(){
                     {
                       alert("Error!");
                     }           
-                    if(unameerror.innerHTML==""||unameerror.innerHTML=="Unique"){
+                    if(!unameerror.classList.contains("error")){
                         return true;
                     }  
                     else{
@@ -149,6 +150,7 @@ function verify(){
         console.log('true');
         alert('update successful');
         submit.click();
+        // setTimeout(location.reload(), 2000);  
           return true;
         
     }

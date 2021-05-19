@@ -1,6 +1,5 @@
 <?php
-include_once "config.php";
-setcookie("username" , "a");
+$conn= mysqli_connect("127.0.0.1","first_year","first_pass","first_db");
 $uname = $_COOKIE["username"];
 // $query = "SELECT * FROM sweety_userdata WHERE username=\"" . $uname . "\";";
 // echo $query;
@@ -38,6 +37,9 @@ while ($genders = mysqli_fetch_assoc($genderq)) {
     foreach ($genders as $gender) {
     }
 }
+
+$result = mysqli_query($conn, "SELECT username FROM sweety_userdata WHERE username!=\"" . $uname . "\";" );
+
 ?>
 
 
@@ -64,8 +66,8 @@ while ($genders = mysqli_fetch_assoc($genderq)) {
                 <div class="content">
                     <img src="" alt="">
                     <div class="details">
-                        <span>Name surname</span>
-                        <p> You</p>
+                        <span><?php echo $uname . " (You)";?></span> <br>
+                        <span class= "light"><?php echo $fname . " " . $lname;?></span>
                     </div>
                     
                 </div>
@@ -76,78 +78,39 @@ while ($genders = mysqli_fetch_assoc($genderq)) {
                 <button><i class="fas fa-search"></i></button>
             </div>   
             <div class="users-list">
-                <a href="">
+                <h4>Registered Users</h4>
+            <?php
+            while($row = mysqli_fetch_assoc($result) ){
+                foreach($row as $user){
+                    $fuserq = mysqli_query($conn, "SELECT fname FROM sweety_userdata WHERE username=\"" . $user . "\";" );
+                    while ($f_user = mysqli_fetch_assoc($fuserq)) { 
+                        foreach ($f_user as $fuser) {
+                        }
+                    }
+                    $luserq = mysqli_query($conn, "SELECT lname FROM sweety_userdata WHERE username=\"" . $user . "\";" );
+                    while ($l_user = mysqli_fetch_assoc($luserq)) { 
+                        foreach ($l_user as $luser) {
+                        }
+                    }
+                    echo "<a href=\"\">
+                    <div class=\"content\">
+                        <img src=\"\" alt=\"\">
+                        <div class=\"details\">
+                            <span>" . $user . "</span> <br> <span class=\"light\">" . $fuser . " " . $luser . "</span>
+                        </div>
+                    </div>
+                </a>";
+                }
+            }
+            ?>
+                <!-- <a href="">
                     <div class="content">
                         <img src="" alt="">
                         <div class="details">
                             <span>online user</span>
                         </div>
                     </div>
-                </a>
-                <a href="">
-                    <div class="content">
-                        <img src="" alt="">
-                        <div class="details">
-                            <span>online user</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="content">
-                        <img src="" alt="">
-                        <div class="details">
-                            <span>online user</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="content">
-                        <img src="" alt="">
-                        <div class="details">
-                            <span>online user</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="content">
-                        <img src="" alt="">
-                        <div class="details">
-                            <span>online user</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="content">
-                        <img src="" alt="">
-                        <div class="details">
-                            <span>online user</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="content">
-                        <img src="" alt="">
-                        <div class="details">
-                            <span>online user</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="content">
-                        <img src="" alt="">
-                        <div class="details">
-                            <span>online user</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="content">
-                        <img src="" alt="">
-                        <div class="details">
-                            <span>online user</span>
-                        </div>
-                    </div>
-                </a>
+                </a> -->
             </div>
 </div>
 
@@ -168,7 +131,7 @@ while ($genders = mysqli_fetch_assoc($genderq)) {
                 </div>
                 
                   <div class="field">
-                    <input type="text" class="form-control" id="username" name="username" placeholder="Username" onkeyup="unamef()" value=<?php echo $uname ?>>
+                    <input type="text" class="form-control" id="username" name="user" placeholder="Username" onkeyup="unamef()" value=<?php echo $uname ?>>
                     <span id="unameerror"></span>
                   </div>
                   <div class="field">
@@ -220,3 +183,6 @@ while ($genders = mysqli_fetch_assoc($genderq)) {
     <script src="update&users.js"></script>
     <script src="https://kit.fontawesome.com/9499724b17.js" crossorigin="anonymous"></script>
 </html>
+<?php
+// ob_end_flush();
+?>

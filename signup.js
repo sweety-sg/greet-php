@@ -143,7 +143,6 @@ function verify(){
         console.log('true');
         alert('sign-up successful');
         submit.click();
-        location.href = 'add-picture.php' ;
           return true;
         
     }
@@ -223,8 +222,8 @@ function validpic(){
     var form = document.querySelector('form');
         console.log("validating picture");
        
-           form.submit;
-           location.href = 'users.php'
+        //    form.submit;
+           location.href = 'users.php';
         
 }
 if ( window.history.replaceState ) { window.history.replaceState( null, null, window.location.href ); }

@@ -6,11 +6,6 @@ echo "failed to connect";
 else{
     // echo "conected";
 }
-if($conn){
-
-    // echo "database connected";
-    // header('location: add-picture.php');
-}
 // echo "<html><script>location.href=\'add-picture.php\';</script></html>" . " 1" ;
 
 // $php_inipath = php_ini_loaded_file();
