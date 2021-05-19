@@ -163,7 +163,7 @@ function unamef(){
     var usname=document.getElementById( "username" ).value;
     data = {user: usname};
     var str= usname;
-    var boo;
+    
     
     if(usname==""){
         document.getElementById('unameerror').innerHTML= "";
@@ -177,14 +177,14 @@ function unamef(){
                     if (this.responseText == "1") {
                         document.getElementById('unameerror').innerHTML= "Unique";
                         document.getElementById('unameerror').style.color= "green";
-                        boo=1;
+                        
                         return true;
                         
                       }
                       if (this.responseText == "0"){
                           document.getElementById('unameerror').innerHTML="Username already exists";
                           document.getElementById('unameerror').style.color= "red";
-                          boo=0;
+                          
                           return false;
                       }
                 
@@ -199,7 +199,7 @@ function unamef(){
                     {
                       alert("Error!");
                     }           
-                    if(document.getElementById('unameerror').innerHTML= "Unique"){
+                    if(document.getElementById('unameerror').innerHTML== "Unique"){
                         return true;
                     }  
                     else{
