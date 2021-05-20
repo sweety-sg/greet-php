@@ -1,44 +1,51 @@
 <?php
 $conn= mysqli_connect("127.0.0.1","first_year","first_pass","first_db");
 $uname = $_COOKIE["username"];
-// $query = "SELECT * FROM sweety_userdata WHERE username=\"" . $uname . "\";";
-// echo $query;
-$fnameq = mysqli_query($conn, "SELECT fname FROM sweety_userdata WHERE username=\"" . $uname . "\";" );
-$lnameq = mysqli_query($conn, "SELECT lname FROM sweety_userdata WHERE username=\"" . $uname . "\";" );
-$emailq = mysqli_query($conn, "SELECT email FROM sweety_userdata WHERE username=\"" . $uname . "\";" );
-$phnq = mysqli_query($conn, "SELECT phone FROM sweety_userdata WHERE username=\"" . $uname . "\";" );
-$ageq = mysqli_query($conn, "SELECT age FROM sweety_userdata WHERE username=\"" . $uname . "\";" );
-$genderq = mysqli_query($conn, "SELECT gender FROM sweety_userdata WHERE username=\"" . $uname . "\";" );
-// foreach($fname as $f_name){
-// print_r($f_name.$fname); 
-// }
-while ($f_name = mysqli_fetch_assoc($fnameq)) { 
-    foreach ($f_name as $fname) {
-        // $fname = $value ; 
+$sql = "SELECT password FROM sweety_userdata WHERE username=\"" . $uname . "\";" ;
+$result = mysqli_query($conn,$sql);
+while ($pass = mysqli_fetch_assoc($result)) { 
+    foreach ($pass as $password) {
     }
 }
-while ($l_name = mysqli_fetch_assoc($lnameq)) { 
-    foreach ($l_name as $lname) {
+if($_COOKIE["password"] ==$password){
+  
+    $fnameq = mysqli_query($conn, "SELECT fname FROM sweety_userdata WHERE username=\"" . $uname . "\";" );
+    $lnameq = mysqli_query($conn, "SELECT lname FROM sweety_userdata WHERE username=\"" . $uname . "\";" );
+    $emailq = mysqli_query($conn, "SELECT email FROM sweety_userdata WHERE username=\"" . $uname . "\";" );
+    $phnq = mysqli_query($conn, "SELECT phone FROM sweety_userdata WHERE username=\"" . $uname . "\";" );
+    $ageq = mysqli_query($conn, "SELECT age FROM sweety_userdata WHERE username=\"" . $uname . "\";" );
+    $genderq = mysqli_query($conn, "SELECT gender FROM sweety_userdata WHERE username=\"" . $uname . "\";" );
+   
+    while ($f_name = mysqli_fetch_assoc($fnameq)) { 
+        foreach ($f_name as $fname) {
+             
+        }
     }
-}
-while ($emails = mysqli_fetch_assoc($emailq)) { 
-    foreach ($emails as $email) {
+    while ($l_name = mysqli_fetch_assoc($lnameq)) { 
+        foreach ($l_name as $lname) {
+        }
     }
-}
-while ($phns = mysqli_fetch_assoc($phnq)) { 
-    foreach ($phns as $phn) {
+    while ($emails = mysqli_fetch_assoc($emailq)) { 
+        foreach ($emails as $email) {
+        }
     }
-}
-while ($ages = mysqli_fetch_assoc($ageq)) { 
-    foreach ($ages as $age) {
+    while ($phns = mysqli_fetch_assoc($phnq)) { 
+        foreach ($phns as $phn) {
+        }
     }
-}
-while ($genders = mysqli_fetch_assoc($genderq)) { 
-    foreach ($genders as $gender) {
+    while ($ages = mysqli_fetch_assoc($ageq)) { 
+        foreach ($ages as $age) {
+        }
     }
+    while ($genders = mysqli_fetch_assoc($genderq)) { 
+        foreach ($genders as $gender) {
+        }
+    }
+    
+    $result = mysqli_query($conn, "SELECT username FROM sweety_userdata WHERE username!=\"" . $uname . "\";" );
+    
+  
 }
-
-$result = mysqli_query($conn, "SELECT username FROM sweety_userdata WHERE username!=\"" . $uname . "\";" );
 
 ?>
 
@@ -71,12 +78,12 @@ $result = mysqli_query($conn, "SELECT username FROM sweety_userdata WHERE userna
                     </div>
                     
                 </div>
-                <a href="#" class="logout btn">Logout</a>
+                <button class="logout btn" onclick="logout()">Logout</button>
             </header>
-            <div class="search">
+            <!-- <div class="search">
                 <input type="text" placeholder="Search Greet">
                 <button><i class="fas fa-search"></i></button>
-            </div>   
+            </div>    -->
             <div class="users-list">
                 <h4>Registered Users</h4>
             <?php

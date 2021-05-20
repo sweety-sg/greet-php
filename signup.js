@@ -49,19 +49,6 @@ function agef(){
     }
 }
 
-// function cityf(){
-//     var city = document.getElementById('city').value;
-//     var cityregex = /^(?=.*[a-zA-Z])(\w*\s*\w+)*$/g ;
-//     if(cityregex.test(city)){
-//         document.getElementById('cityerror').innerHTML = " ";
-//         return true;
-//     }
-//     else{
-//         document.getElementById('cityerror').innerHTML = "city is invalid";
-//         return false;
-//     }
-// }
-
 function emailf(){
     var email = document.getElementById('email').value;
     var emailregex = /^\w[\w_.]*@[A-Za-z]+(\.[A-Za-z]+)+$/g ;
@@ -226,8 +213,57 @@ function validpic(){
            location.href = 'users.php';
         
 }
+function validation(){
+    var usname = document.getElementById( "username" ).value;
+    var pwd = document.getElementById( "pwd" ).value;
+    var loginerr = document.getElementById('login-error');
+    var xhr = new XMLHttpRequest();
+    var data= {};
+        data.username = usname;
+        data.pwd = pwd;
+        xhr.onreadystatechange = function() {
+            if(this.readyState==4 && this.status==200){
+                    console.log("done");
+                    console.log(this.responseText);
+                    if (this.responseText == 1) {
+                        setCookie("username",usname);
+                        setCookie("password",pwd);
+                        location.href = "users.php";
+                        return true;
+                        
+                      }
+                      if (this.responseText == 0){
+                          loginerr.innerHTML="Invalid credentials";
+                          loginerr.style.color= "red";
+                          
+                          return false;
+                      }
+                
+            }
+        };
+        xhr.open("POST", "validation.php",true);
+        xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
+        xhr.send(data);
+        
+                    xhr.onerror = function(evt)
+                    {
+                      alert("Error!");
+                    }           
+                    if(document.getElementById('unameerror').innerHTML== "Unique"){
+                        return true;
+                    }  
+                    else{
+                        return false;
+                    }  
+}
 if ( window.history.replaceState ) { window.history.replaceState( null, null, window.location.href ); }
-
+function setCookie(cname, cvalue) {
+    // var d = new Date();
+    // d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    // var expires = "expires="+ d.toUTCString();
+    // document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    document.cookie = cname + "=" + cvalue + ";" ;
+  }
 
 
 
