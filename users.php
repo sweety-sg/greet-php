@@ -12,10 +12,10 @@ while ($pass = mysqli_fetch_assoc($result)) {
 // echo $sql;
 if($_COOKIE["password"] ==$password){
   
-    $fnameq = mysqli_query($conn, "SELECT fname FROM sweety_userdata WHERE username=\"" . $uname . "\";" );
-    $lnameq = mysqli_query($conn, "SELECT lname FROM sweety_userdata WHERE username=\"" . $uname . "\";" );
-    $emailq = mysqli_query($conn, "SELECT email FROM sweety_userdata WHERE username=\"" . $uname . "\";" );
-    $phnq = mysqli_query($conn, "SELECT phone FROM sweety_userdata WHERE username=\"" . $uname . "\";" );
+    $fnameq = mysqli_query($conn, "SELECT fname FROM sweety_userdata WHERE username=\"" . $uname . "\";" ) ;
+    $lnameq = mysqli_query($conn, "SELECT lname FROM sweety_userdata WHERE username=\"" . $uname . "\";" ) ;
+    $emailq = mysqli_query($conn, "SELECT email FROM sweety_userdata WHERE username=\"" . $uname . "\";" ) ;
+    $phnq = mysqli_query($conn, "SELECT phone FROM sweety_userdata WHERE username=\"" . $uname . "\";" ) ;
     $ageq = mysqli_query($conn, "SELECT age FROM sweety_userdata WHERE username=\"" . $uname . "\";" );
     $genderq = mysqli_query($conn, "SELECT gender FROM sweety_userdata WHERE username=\"" . $uname . "\";" );
     $pictureq = mysqli_query($conn, "SELECT picture FROM sweety_userdata WHERE username=\"" . $uname . "\";" );
@@ -67,7 +67,12 @@ if($_COOKIE["password"] ==$password){
         <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no">
         <link rel= "stylesheet" href="signup.css">
         <link rel="icon" href="https://www.freeiconspng.com/thumbs/handshake-icon/handshake-icon-16.png">
-        
+        <script>
+            function chatsend(sendername){
+                document.cookie = "sender=" + sendername + ";" ; 
+                location.href="chatbox.php";
+            }
+        </script>
     </head>
     <body>
         <div class="three-divs" style="display:flex; flex-direction:column; align-items:center;">
@@ -137,7 +142,7 @@ if($_COOKIE["password"] ==$password){
                     }
                     if($dpuser != NULL){
                         // echo $dpuser;
-                        echo "<a href=\"\">
+                        echo "<a href=\"javascript:chatsend(" . $user . ");\">
                     <div class=\"content\">
                         <img src=\"uploads/" . $dpuser ."\" alt=\"Picture\" height=\"70%\" width= \"45px\">
                         <div class=\"details\">
@@ -147,7 +152,7 @@ if($_COOKIE["password"] ==$password){
                 </a>";
                     }
                     else{
-                        echo "<a href=\"\">
+                        echo "<a href=\"javascript:chatsend(" . $user . ")\">
                         <div class=\"content\">
                             <img src=\"https://lh3.googleusercontent.com/-y3JS5X8y0Ds/AAAAAAAAAAI/AAAAAAAAAAA/xz1xHiB58rs/c-rp-mo-br100/photo.jpg\" alt=\"Picture\" height=\"70%\" width= \"45px\">
                             <div class=\"details\">
@@ -164,7 +169,7 @@ if($_COOKIE["password"] ==$password){
                     <div class="content">
                         <img src="uploads/default.png" alt="Picture" height="70%" width= "45px" style="max-width">
                         <div class="details">
-                            <span>online user</span>
+                            <span>sample user</span>
                         </div>
                     </div>
                 </a>

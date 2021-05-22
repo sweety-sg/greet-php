@@ -81,7 +81,7 @@ function phnf(){
 }
 
 function unamef(){
-    var usname=document.getElementById( "username" ).value;
+    var usname=document.getElementById( "username" ).value.toLowerCase().trim();
     var str= usname;
     var unameerror = document.getElementById('unameerror');
     if(usname==""){

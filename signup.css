@@ -160,3 +160,49 @@ transform: scale(1.01);
     width:100% !important ;
     padding: 1rem;
 }
+
+.sender , .receiver{
+    color: rgb(71, 71, 71);
+    min-height: 50px ;
+    width: 510px;
+    /* background-color: black !important; */
+    margin: 0.8rem 1rem;
+    padding: 1rem;
+    z-index:1;
+    border-radius: 10px;
+}
+.sender{
+    align-self: flex-start;
+    background-color: #e6e6e6;
+}
+.receiver{
+    align-self: flex-end;
+    background-color: rgba(4, 156, 156, 0.596);
+}
+.chat{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.chats{
+align-self: center;
+display: flex;
+flex-direction: column;
+overflow-y: scroll;
+ height:85%; 
+ width:94% ;
+ background-color:#e6e6e631;}
+.message{
+    align-items: center;
+    height:43px;
+    width:94% ;
+    background-color:#e6e6e69f;
+    align-self: center; 
+    display:flex;
+}
+.message input{
+    outline:none;
+    border: rgb(1, 121, 121) solid 1px;
+    font-size: 25px;
+    overflow-y: scroll;
+}

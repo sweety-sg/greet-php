@@ -1,6 +1,8 @@
 <?php
 include_once "config.php";
-$username = $_REQUEST['username'];
+$username_s = $_REQUEST['username'];
+$username_u = trim($username_s);
+$username = strtolower($username_u);
 $pwd = $_REQUEST['pwd'];
 setcookie("username" , $username);
 setcookie("password" , $pwd);
