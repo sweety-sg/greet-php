@@ -1,7 +1,9 @@
 <?php
 include_once "config.php";
-$username = $_REQUEST['username'];
-$pwd = $_REQUEST['pwd'];
+$data = json_decode(file_get_contents("php://input"));
+$username = $data -> username;
+$pwd = $data -> pwd;
+// $pwd = $_REQUEST['pwd'];
 $sql = "SELECT password FROM sweety_userdata WHERE username=\"" . $username . "\";" ;
 // echo $sql;
 echo $username;
@@ -20,6 +22,6 @@ if($result -> num_rows>0){
           } 
 }
 else{
-    echo 00;
+    echo 0;
 }
 ?>

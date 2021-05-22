@@ -1,5 +1,5 @@
 <?php
-$conn= mysqli_connect("127.0.0.1","first_year","first_pass","first_db");
+include_once "config.php";
 $user = $_REQUEST['user'];
 setcookie("username" , $user);
 $fname = $_REQUEST['name'];

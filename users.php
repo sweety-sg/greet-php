@@ -1,5 +1,5 @@
 <?php
-$conn= mysqli_connect("127.0.0.1","first_year","first_pass","first_db");
+include_once "config.php";
 $uname = $_COOKIE["username"];
 $sql = "SELECT password FROM sweety_userdata WHERE username=\"" . $uname . "\";" ;
 $result = mysqli_query($conn,$sql);

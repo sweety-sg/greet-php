@@ -34,7 +34,7 @@
                 <input type="submit" style="display:none;" id="submit"/>
               </form>
               <div class="center-div">
-                    <button class="btn" onclick="validation()">Log In</button>
+                    <button type="button" class="btn" onclick="validation()">Log In</button>
                 </div>
               <div class="link field">
                 Don't have an account? <a href="signup.html">Sign-Up</a>

@@ -1,5 +1,5 @@
 <?php
-$conn= mysqli_connect("127.0.0.1","first_year","first_pass","first_db");
+$conn= mysqli_connect("localhost","first_year","first_year","first_year");
 if(mysqli_connect_errno()){
 echo "failed to connect";
 }

@@ -1,5 +1,5 @@
 <?php
-$conn= mysqli_connect("127.0.0.1","first_year","first_pass","first_db");
+include_once "config.php";
 $username = $_REQUEST['username'];
 $pwd = $_REQUEST['pwd'];
 setcookie("username" , $username);
@@ -12,7 +12,7 @@ $gender = $_REQUEST['gender'];
 $phn = $_REQUEST['phn'];
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "signing up";
-    $sql = "INSERT INTO sweety_userdata  VALUES ('$fname', 
+    $sql = "INSERT INTO sweety_userdata (fname,lname,username,phone,age,gender,password,email)  VALUES ('$fname', 
     '$lname','$username','$phn','$age','$gender','$pwd','$email')" ;
     $res= mysqli_query($conn, $sql);
     // echo $sql;

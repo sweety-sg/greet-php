@@ -68,14 +68,14 @@ function emailf(){
 
 function pwdf(){
     var pwd = document.getElementById('pwd').value;
-    var pwdregex= /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z\d.@$!%*#^?&]{8,}$/g;
+    var pwdregex= /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z\d.@$!%*#^?&]{8,}$/g;
     if(pwdregex.test(pwd)){
         document.getElementById('pwderror').innerHTML = " ";
         return true;
     
     }
     else{
-        document.getElementById('pwderror').innerHTML = "Password must contain atleast 8 characters including atleast 1 alphabet, 1 digit and 1 special character";
+        document.getElementById('pwderror').innerHTML = "Password must contain atleast 8 characters including atleast 1 alphabet and 1 digit";
         return false;
     }
 }
@@ -218,6 +218,7 @@ function validation(){
     var pwd = document.getElementById( "pwd" ).value;
     var remember = document.getElementById("remember").checked;
     var loginerr = document.getElementById('login-error');
+    var submit = document.getElementById("submit");
     console.log(usname);
 
     if(usname !=""){
@@ -253,7 +254,7 @@ function validation(){
             };
             xhr.open("POST", "validation.php",true);
             xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
-            xhr.send(data);
+            xhr.send(JSON.stringify(data));
             
                         xhr.onerror = function(evt)
                         {
