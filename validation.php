@@ -1,26 +1,25 @@
 <?php
 include_once "config.php";
-$errortext = "";
 $username = $_REQUEST['username'];
 $pwd = $_REQUEST['pwd'];
 $sql = "SELECT password FROM sweety_userdata WHERE username=\"" . $username . "\";" ;
 // echo $sql;
+echo $username;
 $result = mysqli_query($conn,$sql);
-while ($pass = mysqli_fetch_assoc($result)) { 
-    foreach ($pass as $password) {
+if($result -> num_rows>0){
+    while ($pass = mysqli_fetch_assoc($result)) { 
+        foreach ($pass as $password) {
+        }
     }
-}
-// echo $pwd ." no";
-// echo $password . " yo";
-if($pwd ==$password){
-  $errortext = "";
-//   setcookie("username",$username);
-//   setcookie("password", $pwd);
-//   header('location : users.php');
-  echo 1;
+    echo $pwd . $password;
+        if($pwd==$password){
+            echo 1;
+          } 
+          else{
+              echo 0;
+          } 
 }
 else{
-    $errortext = "Invalid credentials";
-    echo 0;
+    echo 00;
 }
 ?>

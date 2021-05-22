@@ -2,10 +2,11 @@ body{
     margin: 50px 18rem;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     font-size: 20px;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     background-image: url(538d72bca02d199a39ec583e855e3825.png) ;
-    background-size: contain;
+    background-size:cover;
 }
 select{
     height:2rem;
@@ -48,7 +49,7 @@ option{
 .box{
     display: flex;
     flex-direction: column;
-    width: 340px;
+    min-width: 340px;
     padding: 3.5rem;
     margin: 0 auto  !important;
     max-height: fit-content;
@@ -56,6 +57,9 @@ option{
     z-index: 1;
     opacity: 1;
     background: white;
+}
+.signup.box{
+    width: 340px;
 }
 .center-div{
     max-width: fit-content;
@@ -122,10 +126,10 @@ height: 80px;
 .users-list{
     padding: 0.5rem;
     font-size: 20px;
-    height: 580px;
+    height: 640px;
     overflow-y: scroll;
 }
-.users-list .content{
+ .content{
 display: flex;
 padding-bottom: 10px;
 align-items: center;
@@ -134,6 +138,12 @@ justify-content: flex-start;
 height: 60px;
 font-size: 20px;
 color: black;
+}
+.users .content{
+    border-bottom: none;
+}
+.details{
+    margin-left: 15px;
 }
 .details .light{
     color: #575757;

@@ -196,3 +196,6 @@ function logout(){
    
     
 }
+function changedp(){
+    location.href="add-picture.php";
+}

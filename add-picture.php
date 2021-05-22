@@ -11,18 +11,19 @@
     <body>
         <section class="picture box">
             <h2 style="border-bottom: solid 1px #e6e6e6; padding: 0.5rem;">Add a profile picture</h2>
-            <form action="">
+            <form action="upload.php" method="post" enctype="multipart/form-data">
                 
                 
-                  <div class="field">
-                    <input type="file" class="form-control" id="dp" placeholder="Add an image">
+                  <div class="field" style="flex-direction:row;">
+                    <input type="file" name="picUpload" class="form-control" id="picUpload" placeholder="Add an image">
                     <span id="imageerror"></span>
+                    <input type="submit"  value="Upload and continue" name="submit"/>
                   </div>
                 <br>
-                <input type="submit" style="display:none;" id="dp-submit"/>
+                
               </form>
               <div class="center-div">
-                    <button class="btn" id="picture" onclick="validpic()">Continue</button>
+                    <button class="btn" id="picture" onclick="continuepic()">Continue without uploading</button>
                 </div>
 
             
@@ -30,12 +31,3 @@
     </body>
     <script src="signup.js"></script>
 </html>
-<?php
-//   function redirect($url) {
-//     ob_start();
-//     header('Location: '.$url);
-//     ob_end_flush();
-//     die();
-// }
-// header('location: users.php');
-?>

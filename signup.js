@@ -205,9 +205,9 @@ const dpsubmit = document.getElementById('dp-submit');
 //     e.preventDefault();
     
 // }
-function validpic(){
+function continuepic(){
     var form = document.querySelector('form');
-        console.log("validating picture");
+        console.log("continuing");
        
         //    form.submit;
            location.href = 'users.php';
@@ -216,45 +216,55 @@ function validpic(){
 function validation(){
     var usname = document.getElementById( "username" ).value;
     var pwd = document.getElementById( "pwd" ).value;
+    var remember = document.getElementById("remember").checked;
     var loginerr = document.getElementById('login-error');
-    var xhr = new XMLHttpRequest();
-    var data= {};
-        data.username = usname;
-        data.pwd = pwd;
-        xhr.onreadystatechange = function() {
-            if(this.readyState==4 && this.status==200){
-                    console.log("done");
-                    console.log(this.responseText);
-                    if (this.responseText == 1) {
-                        setCookie("username",usname);
-                        setCookie("password",pwd);
-                        location.href = "users.php";
-                        return true;
-                        
-                      }
-                      if (this.responseText == 0){
-                          loginerr.innerHTML="Invalid credentials";
-                          loginerr.style.color= "red";
-                          
-                          return false;
-                      }
-                
-            }
-        };
-        xhr.open("POST", "validation.php",true);
-        xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
-        xhr.send(data);
+    console.log(usname);
+
+    if(usname !=""){
         
-                    xhr.onerror = function(evt)
-                    {
-                      alert("Error!");
-                    }           
-                    if(document.getElementById('unameerror').innerHTML== "Unique"){
-                        return true;
-                    }  
-                    else{
-                        return false;
-                    }  
+        var xhr = new XMLHttpRequest();
+        var data= {};
+            data.username = usname;
+            data.pwd = pwd;
+            console.log(data);
+            xhr.onreadystatechange = function() {
+                if(remember==true){
+                    rememberCookie("rem-u",usname,30000);
+                    rememberCookie("rem-p",pwd,30000);
+                }
+                if(this.readyState==4 && this.status==200){
+                        console.log("done");
+                        console.log(this.responseText);
+                        if (this.responseText == 1) {
+                            setCookie("username",usname);
+                            setCookie("password",pwd);
+                            location.href = "users.php";
+                            return true;
+                            
+                          }
+                          if (this.responseText == 0){
+                              loginerr.innerHTML="Invalid credentials";
+                              loginerr.style.color= "red";
+                              
+                              return false;
+                          }
+                    
+                }
+            };
+            xhr.open("POST", "validation.php",true);
+            xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
+            xhr.send(data);
+            
+                        xhr.onerror = function(evt)
+                        {
+                          alert("Error!");
+                        }   
+    }
+    else{
+        loginerr.innerHTML="Please enter credentials";
+        loginerr.style.color= "red";
+    }
+           
 }
 if ( window.history.replaceState ) { window.history.replaceState( null, null, window.location.href ); }
 function setCookie(cname, cvalue) {
@@ -263,6 +273,15 @@ function setCookie(cname, cvalue) {
     // var expires = "expires="+ d.toUTCString();
     // document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
     document.cookie = cname + "=" + cvalue + ";" ;
+  }
+  function rememberCookie(cname,cvalue,exdays){
+      console.log("true")
+      var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    console.log(expires);
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    console.log(document.cookie);
   }
 
 

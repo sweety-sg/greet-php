@@ -7,6 +7,9 @@ while ($pass = mysqli_fetch_assoc($result)) {
     foreach ($pass as $password) {
     }
 }
+// echo $_COOKIE["password"]."0";
+// echo $password;
+// echo $sql;
 if($_COOKIE["password"] ==$password){
   
     $fnameq = mysqli_query($conn, "SELECT fname FROM sweety_userdata WHERE username=\"" . $uname . "\";" );
@@ -15,6 +18,7 @@ if($_COOKIE["password"] ==$password){
     $phnq = mysqli_query($conn, "SELECT phone FROM sweety_userdata WHERE username=\"" . $uname . "\";" );
     $ageq = mysqli_query($conn, "SELECT age FROM sweety_userdata WHERE username=\"" . $uname . "\";" );
     $genderq = mysqli_query($conn, "SELECT gender FROM sweety_userdata WHERE username=\"" . $uname . "\";" );
+    $pictureq = mysqli_query($conn, "SELECT picture FROM sweety_userdata WHERE username=\"" . $uname . "\";" );
    
     while ($f_name = mysqli_fetch_assoc($fnameq)) { 
         foreach ($f_name as $fname) {
@@ -41,6 +45,11 @@ if($_COOKIE["password"] ==$password){
         foreach ($genders as $gender) {
         }
     }
+    while ($pictures = mysqli_fetch_assoc($pictureq)) { 
+        foreach ($pictures as $picture) {
+        }
+    }
+
     
     $result = mysqli_query($conn, "SELECT username FROM sweety_userdata WHERE username!=\"" . $uname . "\";" );
     
@@ -71,7 +80,29 @@ if($_COOKIE["password"] ==$password){
             <h4 style="border-bottom: solid 1px #e6e6e6; padding: 0.5rem;">Now you can GREET your friends</h2>
             <header>
                 <div class="content">
-                    <img src="" alt="">
+                    <?php
+                    if($picture != NULL){
+                        // echo $picture;
+                        echo "<a href=\"\">
+                    <div class=\"content\">
+                        <img src=\"uploads/" . $picture ."\" alt=\"Picture\" height=\"70%\" width= \"45px\">
+                        <div class=\"details\">
+                            <span>" . $user . "</span> <br> <span class=\"light\">" . $fuser . " " . $luser . "</span>
+                        </div>
+                    </div>
+                </a>";
+                    }
+                    else{
+                        echo "<a href=\"\">
+                        <div class=\"content\">
+                            <img src=\"https://lh3.googleusercontent.com/-y3JS5X8y0Ds/AAAAAAAAAAI/AAAAAAAAAAA/xz1xHiB58rs/c-rp-mo-br100/photo.jpg\" alt=\"Picture\" height=\"70%\" width= \"45px\">
+                            <div class=\"details\">
+                                <span>" . $user . "</span> <br> <span class=\"light\">" . $fuser . " " . $luser . "</span>
+                            </div>
+                        </div>
+                    </a>"; 
+                    }
+                    ?>
                     <div class="details">
                         <span><?php echo $uname . " (You)";?></span> <br>
                         <span class= "light"><?php echo $fname . " " . $lname;?></span>
@@ -99,25 +130,44 @@ if($_COOKIE["password"] ==$password){
                         foreach ($l_user as $luser) {
                         }
                     }
-                    echo "<a href=\"\">
+                    $dpuserq = mysqli_query($conn, "SELECT picture FROM sweety_userdata WHERE username=\"" . $user . "\";" );
+                    while ($dp_user = mysqli_fetch_assoc($dpuserq)) { 
+                        foreach ($dp_user as $dpuser) {
+                        }
+                    }
+                    if($dpuser != NULL){
+                        // echo $dpuser;
+                        echo "<a href=\"\">
                     <div class=\"content\">
-                        <img src=\"\" alt=\"\">
+                        <img src=\"uploads/" . $dpuser ."\" alt=\"Picture\" height=\"70%\" width= \"45px\">
                         <div class=\"details\">
                             <span>" . $user . "</span> <br> <span class=\"light\">" . $fuser . " " . $luser . "</span>
                         </div>
                     </div>
                 </a>";
+                    }
+                    else{
+                        echo "<a href=\"\">
+                        <div class=\"content\">
+                            <img src=\"https://lh3.googleusercontent.com/-y3JS5X8y0Ds/AAAAAAAAAAI/AAAAAAAAAAA/xz1xHiB58rs/c-rp-mo-br100/photo.jpg\" alt=\"Picture\" height=\"70%\" width= \"45px\">
+                            <div class=\"details\">
+                                <span>" . $user . "</span> <br> <span class=\"light\">" . $fuser . " " . $luser . "</span>
+                            </div>
+                        </div>
+                    </a>"; 
+                    }
+                    
                 }
             }
             ?>
-                <!-- <a href="">
+                <a href="">
                     <div class="content">
-                        <img src="" alt="">
+                        <img src="uploads/default.png" alt="Picture" height="70%" width= "45px" style="max-width">
                         <div class="details">
                             <span>online user</span>
                         </div>
                     </div>
-                </a> -->
+                </a>
             </div>
 </div>
 
@@ -159,7 +209,7 @@ if($_COOKIE["password"] ==$password){
                   <div class="field">
                   <input type="text" class="form-control" id="gender" name="gender" placeholder="Gender"  value=<?php echo $gender ?>>
                   </div>
-    
+                <button type="button" onclick="changedp()">Add/change picture</button>
 
                 <!-- <div class="field">
                   <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Old password" autocomplete="on" onkeyup="opwdf()">
@@ -190,6 +240,3 @@ if($_COOKIE["password"] ==$password){
     <script src="update&users.js"></script>
     <script src="https://kit.fontawesome.com/9499724b17.js" crossorigin="anonymous"></script>
 </html>
-<?php
-// ob_end_flush();
-?>
