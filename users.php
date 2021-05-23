@@ -232,12 +232,12 @@ if($_COOKIE["password"] ==$password){
             <span id="pass-error"></span>
             <form action="updatepass.php" method="post">
             <div class="field">
-                    <input type="text" class="form-control" id="old" name="old" placeholder="Old password" >
+                    <input type="password" class="form-control" id="old" name="old" placeholder="Old password" >
                     <span id="olderror"></span>
                   </div>
     
                   <div class="field">
-                    <input type="text" class="form-control" id="new" name="new" placeholder="New password" onkeyup="pwdf()">
+                    <input type="password" class="form-control" id="new" name="new" placeholder="New password" onkeyup="pwdf()">
                     <span id="pwderror"></span>
                   </div>
                   <input type= "submit" class="btn" style="display:none;" id="changepass">

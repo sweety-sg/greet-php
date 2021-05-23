@@ -80,7 +80,7 @@ function phnf(){
     }
 }
 function pwdf(){
-    var pwd = document.getElementById('pwd').value;
+    var pwd = document.getElementById('new').value;
     var pwdregex= /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z\d.@$!%*#^?&]{8,}$/g;
     if(pwdregex.test(pwd)){
         document.getElementById('pwderror').innerHTML = " ";
@@ -213,7 +213,7 @@ function changedp(){
     location.href="add-picture.php";
 }
 function checkpass(){
-    var old = document.getElementById("old");
+    var old = document.getElementById("old").value;
     var passSubmit = document.getElementById("changepass");
     if(old == readCookie("password")){
         passSubmit.click();
