@@ -10,12 +10,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     username=\"" . $username . "\";" ;
     $res= mysqli_query($conn, $sql);
 if($res){
-   echo "<script type='text/javascript'>location.href = \"users.php\";</script>"
+   echo "<script type='text/javascript'>
+   document.cookie= \"password=\" +" . $new . ";
+   location.href = \"users.php\";</script>";
 } else{
     echo "<script type='text/javascript'>alert('Sorry, an error occured');</script>";
-}
-    
-}
-
+}   
 }
 ?>

@@ -4,14 +4,14 @@ $other = $_COOKIE['sender'];
 $user = $_COOKIE['username'];
 $sql = "SELECT * FROM sweety_chat WHERE (sender=\"" .$sender. "\" OR sender=\"" . $receiver . "\") AND (receiver=\"" .$sender. "\" OR receiver=\"" . $receiver . "\") ORDER BY ig ASC ;" ;
 $result($conn, $sql);
-function setInterval($f, $seconds)
-{
-    while(true)
-    {
-        $f();
-        sleep($seconds);
-    }
-}
+// function setInterval($f, $seconds)
+// {
+//     while(true)
+//     {
+//         $f();
+//         sleep($seconds);
+//     }
+// }
 ?>
 <!DOCTYPE html>
 <html>
@@ -30,16 +30,16 @@ function setInterval($f, $seconds)
             <span id="chat-error"></span>
             <div class="chats" >
                 <?php
-                setInterval(function(){
-                    while($row = mysqli_fetch_assoc($result) ){
-                        if($row['sender']==$other){
-                           echo "<div class=\"receiver\">" .$row['msg'] . "</div>";
-                        }
-                        if($row['sender']==$user){
-                           echo "<div class=\"sender\">" . $row['msg'] . "</div>";
-                        }
-                    }
-                },1);
+                // setInterval(function(){
+                //     while($row = mysqli_fetch_assoc($result) ){
+                //         if($row['sender']==$other){
+                //            echo "<div class=\"receiver\">" .$row['msg'] . "</div>";
+                //         }
+                //         if($row['sender']==$user){
+                //            echo "<div class=\"sender\">" . $row['msg'] . "</div>";
+                //         }
+                //     }
+                // },1);
                 ?>
                 <!-- <a href = "javascript: test()">click</a> -->
                 <div class="sender">
@@ -49,9 +49,6 @@ function setInterval($f, $seconds)
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut .
                 no idea
                 </div>
-                <?php
-
-                ?>
             </div>
             <div class="message">
     <input type="text" name="msg" id="msg" style="width: 90%; height:40px ; ">
