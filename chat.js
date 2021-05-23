@@ -1,3 +1,4 @@
+setInterval(texts,5000);
 function send(){
     var msg = document.getElementById("msg").value.trim();
     // console.log(msg);
@@ -33,4 +34,17 @@ function send(){
 function test(){ console.log("worked");}
 function back(){
     location.href="users.php";
+}
+function texts(){
+    var chatArea = document.getElementById("chats");
+    var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if(this.readyState==4 && this.status==200){
+                    console.log("done");
+                    console.log(this.responseText);
+                    chatArea.innerHTML(this.responseText);
+            }
+        };
+        xhr.open("GET", "texts.php",true);
+        xhr.send();        
 }

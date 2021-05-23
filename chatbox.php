@@ -1,18 +1,3 @@
-<?php
-include_once "config.php";
-$other = $_COOKIE['sender'];
-$user = $_COOKIE['username'];
-$sql = "SELECT * FROM sweety_chat WHERE (sender=\"" .$sender. "\" OR sender=\"" . $receiver . "\") AND (receiver=\"" .$sender. "\" OR receiver=\"" . $receiver . "\");" ;
-$result=mysqli_query($conn, $sql);
-function setInterval($f, $seconds)
-{
-    while(true)
-    {
-        $f();
-        sleep($seconds);
-    }
-}
-?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -28,7 +13,7 @@ function setInterval($f, $seconds)
             <button class = "btn" type="button" style= "width:70px;" onclick="back()">Back</button>
             <h2 style="border-bottom: solid 1px #e6e6e6; padding: 0.5rem;">Say hi!</h2>
             <span id="chat-error"></span>
-            <div class="chats" >
+            <div class="chats" id="chats">
                 <?php
                 // setInterval(function(){
                 //     while($row = mysqli_fetch_assoc($result) ){
@@ -40,14 +25,7 @@ function setInterval($f, $seconds)
                 //         }
                 //     }
                 // },1);
-                while($row = mysqli_fetch_assoc($result) ){
-                            if($row['sender']==$other){
-                               echo "<div class=\"receiver\">" .$row['msg'] . "</div>";
-                            }
-                            if($row['sender']==$user){
-                               echo "<div class=\"sender\">" . $row['msg'] . "</div>";
-                            }
-                        }
+                
                 ?>
                 <!-- <a href = "javascript: test()">click</a> -->
                 <!-- <div class="sender">
