@@ -2,7 +2,7 @@
 include_once "config.php";
 $other = $_COOKIE['sender'];
 $user = $_COOKIE['username'];
-$sql = "SELECT * FROM sweety_chat WHERE (sender=\"" .$sender. "\" OR sender=\"" . $receiver . "\") AND (receiver=\"" .$sender. "\" OR receiver=\"" . $receiver . "\");" ;
+$sql = "SELECT * FROM sweety_chat WHERE (sender=\"" .$other. "\" OR sender=\"" . $user . "\") AND (receiver=\"" .$other. "\" OR receiver=\"" . $user . "\");" ;
 $result=mysqli_query($conn, $sql);
 if(mysqli_num_rows($result) > 0){
     while($row = mysqli_fetch_assoc($result) ){
