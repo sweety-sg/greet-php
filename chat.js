@@ -44,8 +44,8 @@ function texts(){
     console.log("called");
     var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
-            if(this.readyState==4 && this.status==200){
-                var res = JSON.parse(xhr.responseText);
+            if(xhr.readyState==4 && xhr.status==200){
+                var res = JSON.parse(this.responseText);
                 var Data = res.data;
                     console.log("done");
                     console.log(Data);
@@ -64,7 +64,7 @@ function texts(){
                     }
             }
         };
-        xhr.open("GET", "texts.php",true);
+        xhr.open("GET","texts.php",true);
         xhr.send(); 
         xhr.onerror = function(){
             alert("An error occurred.");
