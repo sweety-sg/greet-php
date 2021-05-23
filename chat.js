@@ -49,16 +49,16 @@ function texts(){
                 var Data = res.data;
                     console.log("done");
                     console.log(Data);
-                    for(let i =  0 ; i < Data.length; i++){
+                    for(let i =  0 ; i < Data.length-1; i++){
                         let message = document.createElement("div");
                         message.innerHTML= Data[i].msg;
                         var other = readCookie("sender");
                         var sendr = Data[i].sender ;
                         if(other.toString()== sendr.toString()){
-                            message.classList.add("receiver");
+                            message.classList.add("sender");
                         }
                         else{
-                            message.classList.add("sender");
+                            message.classList.add("receiver");
                         }
                         chatArea.appendChild(message);
                     }

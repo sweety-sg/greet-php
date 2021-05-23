@@ -13,9 +13,11 @@ if($result->num_rows> 0){
         // if($row["sender"]==$user){
         //    echo "<div class=\"sender\">" . $row["msg"] . "</div>";
         // }
-        echo("{\"sender\":\" " . $row["sender"] . " \",\"receiver\":\" " . $row["receiver"] . " \",\"msg\":\" " . $row["msg"] . " \"}");
+        echo("{\"sender\":\" " . $row["sender"] . " \",\"receiver\":\" " . $row["receiver"] . " \",\"msg\":\" " . $row["msg"] . " \"},");
 
     }
+    echo("{\"sender\": \"\",\"receiver\": \"\",\"msg\":\"\"}]}");
+
 }
 
 ?>
