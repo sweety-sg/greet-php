@@ -66,7 +66,6 @@ if($_COOKIE["password"] ==$password){
             function chatsend(sendername){
                 document.cookie = "sender=" + sendername + ";" ; 
                 location.href="chatbox.php";
-                return false;
             }
         </script>
     </head>
@@ -138,24 +137,22 @@ if($_COOKIE["password"] ==$password){
                     }
                     if($dpuser != NULL){
                         // echo $dpuser;
-                        echo "<a href=\"javascript:chatsend(" .$user. ");\">
-                    <div class=\"content\">
+                        echo "
+                    <div class=\"content\" onclick=\"chatsend('" . $user . "')\">
                         <img src=\"uploads/" . $dpuser ."\" alt=\"Picture\" height=\"70%\" width= \"45px\">
                         <div class=\"details\">
                             <span>" . $user . "</span> <br> <span class=\"light\">" . $fuser . " " . $luser . "</span>
                         </div>
-                    </div>
-                </a>";
+                    </div>";
                     }
                     else{
-                        echo "<a href=\"javascript:chatsend(" .$user. ")\">
-                        <div class=\"content\">
+                        echo "
+                        <div class=\"content\" onclick=\"chatsend('" . $user . "')\">
                             <img src=\"https://lh3.googleusercontent.com/-y3JS5X8y0Ds/AAAAAAAAAAI/AAAAAAAAAAA/xz1xHiB58rs/c-rp-mo-br100/photo.jpg\" alt=\"Picture\" height=\"70%\" width= \"45px\">
                             <div class=\"details\">
                                 <span>" . $user . "</span> <br> <span class=\"light\">" . $fuser . " " . $luser . "</span>
                             </div>
-                        </div>
-                    </a>"; 
+                        </div>"; 
                     }
                     
                 }
