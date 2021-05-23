@@ -52,13 +52,8 @@ if($_COOKIE["password"] ==$password){
 
     
     $result = mysqli_query($conn, "SELECT username FROM sweety_userdata WHERE username!=\"" . $uname . "\";" );
-    
-  
 }
-
 ?>
-
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -71,6 +66,7 @@ if($_COOKIE["password"] ==$password){
             function chatsend(sendername){
                 document.cookie = "sender=" + sendername + ";" ; 
                 location.href="chatbox.php";
+                return false;
             }
         </script>
     </head>
@@ -142,7 +138,7 @@ if($_COOKIE["password"] ==$password){
                     }
                     if($dpuser != NULL){
                         // echo $dpuser;
-                        echo "<a href=\"javascript:chatsend(\"" . $user . "\");\">
+                        echo "<a href=\"javascript:chatsend(" .$user. ");\">
                     <div class=\"content\">
                         <img src=\"uploads/" . $dpuser ."\" alt=\"Picture\" height=\"70%\" width= \"45px\">
                         <div class=\"details\">
@@ -152,7 +148,7 @@ if($_COOKIE["password"] ==$password){
                 </a>";
                     }
                     else{
-                        echo "<a href=\"javascript:chatsend(\"" . $user . "\")\">
+                        echo "<a href=\"javascript:chatsend(" .$user. ")\">
                         <div class=\"content\">
                             <img src=\"https://lh3.googleusercontent.com/-y3JS5X8y0Ds/AAAAAAAAAAI/AAAAAAAAAAA/xz1xHiB58rs/c-rp-mo-br100/photo.jpg\" alt=\"Picture\" height=\"70%\" width= \"45px\">
                             <div class=\"details\">
