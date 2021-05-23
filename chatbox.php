@@ -14,8 +14,8 @@
             <h2 style="border-bottom: solid 1px #e6e6e6; padding: 0.5rem;">Say hi!</h2>
             <span id="chat-error"></span>
             <div class="chats" id="chats">
-                <?php
-                // setInterval(function(){
+                
+                <!-- // setInterval(function(){
                 //     while($row = mysqli_fetch_assoc($result) ){
                 //         if($row['sender']==$other){
                 //            echo "<div class=\"receiver\">" .$row['msg'] . "</div>";
@@ -24,9 +24,9 @@
                 //            echo "<div class=\"sender\">" . $row['msg'] . "</div>";
                 //         }
                 //     }
-                // },1);
+                // },1); -->
                 
-                ?>
+                
                 <!-- <a href = "javascript: test()">click</a> -->
                 <!-- <div class="sender">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.

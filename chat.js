@@ -1,3 +1,6 @@
+window.onload = () =>{
+texts();
+}
 setInterval(texts,5000);
 function send(){
     var msg = document.getElementById("msg").value.trim();
@@ -38,25 +41,26 @@ function back(){
 function texts(){
     var chatArea = document.getElementById("chats");
     chatArea.innerHTML="";
+    console.log("called");
     var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
             if(this.readyState==4 && this.status==200){
                 var res = JSON.parse(xhr.responseText);
-                var data = res.data;
+                var Data = res.data;
                     console.log("done");
-                    console.log(data);
-                    for(let i =  0 ; i < data.length-1 ; i++){
+                    console.log(Data);
+                    for(let i =  0 ; i < Data.length; i++){
                         let message = document.createElement("div");
-                        message.innerHTML= data[i].msg;
-                        var other = getcookie("sender");
-                        var sendr = data[i].sender ;
+                        message.innerHTML= Data[i].msg;
+                        var other = readCookie("sender");
+                        var sendr = Data[i].sender ;
                         if(other.toString()== sendr.toString()){
                             message.classList.add("receiver");
                         }
                         else{
                             message.classList.add("sender");
                         }
-                        chatArea.appendChild("message");
+                        chatArea.appendChild(message);
                     }
             }
         };
@@ -65,4 +69,15 @@ function texts(){
         xhr.onerror = function(){
             alert("An error occurred.");
         }       
+}
+function readCookie(name) {
+	var cookiename = name + "=";
+	var ca = document.cookie.split(';');
+	for(var i=0;i < ca.length;i++)
+	{
+		var c = ca[i];
+		while (c.charAt(0)==' ') c = c.substring(1,c.length);
+		if (c.indexOf(cookiename) == 0) return c.substring(cookiename.length,c.length);
+	}
+	return null;
 }
