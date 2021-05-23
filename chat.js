@@ -37,14 +37,32 @@ function back(){
 }
 function texts(){
     var chatArea = document.getElementById("chats");
+    chatArea.innerHTML="";
     var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
             if(this.readyState==4 && this.status==200){
+                var res = JSON.parse(xhr.responseText);
+                var data = res.data;
                     console.log("done");
-                    console.log(this.responseText);
-                    chatArea.innerHTML(this.responseText);
+                    console.log(data);
+                    for(let i =  0 ; i < data.length-1 ; i++){
+                        let message = document.createElement("div");
+                        message.innerHTML= data[i].msg;
+                        var other = getcookie("sender");
+                        var sendr = data[i].sender ;
+                        if(other.toString()== sendr.toString()){
+                            message.classList.add("receiver");
+                        }
+                        else{
+                            message.classList.add("sender");
+                        }
+                        chatArea.appendChild("message");
+                    }
             }
         };
         xhr.open("GET", "texts.php",true);
-        xhr.send();        
+        xhr.send(); 
+        xhr.onerror = function(){
+            alert("An error occurred.");
+        }       
 }
