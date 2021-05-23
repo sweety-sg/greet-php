@@ -4,7 +4,14 @@ $other = $_COOKIE['sender'];
 $user = $_COOKIE['username'];
 $sql = "SELECT * FROM sweety_chat WHERE (sender=\"" .$sender. "\" OR sender=\"" . $receiver . "\") AND (receiver=\"" .$sender. "\" OR receiver=\"" . $receiver . "\") ORDER BY ig ASC ;" ;
 $result($conn, $sql);
-
+function setInterval($f, $seconds)
+{
+    while(true)
+    {
+        $f();
+        sleep($seconds);
+    }
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,14 +31,17 @@ $result($conn, $sql);
             <span id="chat-error"></span>
             <div class="chats" >
                 <?php
-                 while($row = mysqli_fetch_assoc($result) ){
-                     if($row['sender']==$other){
-                        echo "<div class=\"receiver\">" .$row['msg'] . "</div>";
-                     }
-                     if($row['sender']==$user){
-                        echo "<div class=\"sender\">" . $row['msg'] . "</div>";
-                     }
-                 }?>
+                setInterval(function(){
+                    while($row = mysqli_fetch_assoc($result) ){
+                        if($row['sender']==$other){
+                           echo "<div class=\"receiver\">" .$row['msg'] . "</div>";
+                        }
+                        if($row['sender']==$user){
+                           echo "<div class=\"sender\">" . $row['msg'] . "</div>";
+                        }
+                    }
+                },1);
+                ?>
                 <!-- <a href = "javascript: test()">click</a> -->
                 <div class="sender">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
