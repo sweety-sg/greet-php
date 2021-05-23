@@ -22,11 +22,10 @@ function setInterval($f, $seconds)
         <link rel= "stylesheet" href="signup.css">
         <link rel="icon" href="https://www.freeiconspng.com/thumbs/handshake-icon/handshake-icon-16.png">
         <script src="https://kit.fontawesome.com/9499724b17.js" crossorigin="anonymous"></script>
-       
     </head>
     <body>
         <section class="chat box" style= "height:800px; width:800px; overflow-y: scroll;">
-            <button class = "btn" type="button" style= "width:70px;">Back</button>
+            <button class = "btn" type="button" style= "width:70px;" onclick="back()">Back</button>
             <h2 style="border-bottom: solid 1px #e6e6e6; padding: 0.5rem;">Say hi!</h2>
             <span id="chat-error"></span>
             <div class="chats" >

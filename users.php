@@ -168,8 +168,8 @@ if($_COOKIE["password"] ==$password){
                 </a> -->
             </div>
 </div>
-
-        <div class="update box">
+            <div class="update">
+            <div class="box">
             <h2 style="border-bottom: solid 1px #e6e6e6; padding: 0.5rem;">Update profile</h2>
             <span id="incomplete-error"></span>
             <form action="update.php" method="post">
@@ -227,6 +227,27 @@ if($_COOKIE["password"] ==$password){
               <div class="center-div">
                 <button class="btn" onclick="verify()">Update</button>
             </div>
+            <div class="box">
+            <h2 style="border-bottom: solid 1px #e6e6e6; padding: 0.5rem;">Update profile</h2>
+            <span id="pass-error"></span>
+            <form action="updatepass.php" method="post">
+            <div class="field">
+                    <input type="text" class="form-control" id="old" name="old" placeholder="Old password" >
+                    <span id="olderror"></span>
+                  </div>
+    
+                  <div class="field">
+                    <input type="text" class="form-control" id="new" name="new" placeholder="New password" onkeyup="pwdf()">
+                    <span id="pwderror"></span>
+                  </div>
+                  <input type= "submit" class="btn" style="display:none;" id="changepass">
+            </form>
+            <div class="center-div">
+                <button class="btn" onclick="checkpass()">Update password</button>
+            </div>
+            </div>
+            </div>
+        
               <br>
 
             

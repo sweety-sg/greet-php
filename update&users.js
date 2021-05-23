@@ -5,11 +5,11 @@ var upbox = document.querySelector(".update");
 var userbox = document.querySelector(".users");
 function upnav(){
 upbox.style.display= "block";
-userbox.style.display= "none"
+userbox.style.display= "none";
 }
 function usernav(){
-    upbox.style.display= "none"
-    userbox.style.display= "block"
+    upbox.style.display= "none";
+    userbox.style.display= "block";
 }
 
 function namef(){
@@ -76,6 +76,19 @@ function phnf(){
     }
     else{
         document.getElementById('phnerror').innerHTML = "Phone number is invalid.";
+        return false;
+    }
+}
+function pwdf(){
+    var pwd = document.getElementById('pwd').value;
+    var pwdregex= /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z\d.@$!%*#^?&]{8,}$/g;
+    if(pwdregex.test(pwd)){
+        document.getElementById('pwderror').innerHTML = " ";
+        return true;
+    
+    }
+    else{
+        document.getElementById('pwderror').innerHTML = "Weak password";
         return false;
     }
 }
@@ -198,4 +211,15 @@ function logout(){
 }
 function changedp(){
     location.href="add-picture.php";
+}
+function checkpass(){
+    var old = document.getElementById("old");
+    var passSubmit = document.getElementById("changepass");
+    if(old == readCookie("password")){
+        passSubmit.click();
+    }
+    else{
+        var passError= document.getElementById("pwderror");
+        passError.innerHTML = "Sorry! Wrong password."
+    }
 }
