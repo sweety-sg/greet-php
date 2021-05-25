@@ -1,11 +1,14 @@
 window.onload = () =>{
 texts();
+gotoBottom("chats");
 }
 setInterval(texts,5000);
 function send(){
-    var msg = document.getElementById("msg").value.trim();
+    var msg1 = document.getElementById("msg").value.trim();
+    var msg2 = {message: msg1};
+        var msg = JSON.stringify(msg2);
     // console.log(msg);
-    if(msg!=""){
+    if(msg1!=""){
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
             if(this.readyState==4 && this.status==200){
@@ -26,8 +29,9 @@ function send(){
                 }
             }
         };
-        xhr.open("GET", "chat.php?q="+msg,true);
-        xhr.send();
+        xhr.open("POST", "chat.php",true);
+        xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
+        xhr.send(msg);
                     xhr.onerror = function(evt)
                     {
                       alert("An error occurred, Please try again.");
@@ -40,27 +44,25 @@ function back(){
 }
 function texts(){
     var chatArea = document.getElementById("chats");
-    chatArea.innerHTML="";
-    console.log("called");
     var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
             if(xhr.readyState==4 && xhr.status==200){
                 var res = JSON.parse(this.responseText);
                 var Data = res.data;
-                    console.log("done");
-                    console.log(Data);
+                var other = readCookie("sender");
+                    chatArea.innerHTML="";
                     for(let i =  0 ; i < Data.length-1; i++){
                         let message = document.createElement("div");
                         message.innerHTML= Data[i].msg;
-                        var other = readCookie("sender");
                         var sendr = Data[i].sender ;
-                        if(other.toString()== sendr.toString()){
-                            message.classList.add("sender");
-                        }
-                        else{
+                        if(other== sendr.trim()){
                             message.classList.add("receiver");
                         }
+                        else{
+                            message.classList.add("sender");
+                        }
                         chatArea.appendChild(message);
+                        gotoBottom("chats");
                     }
             }
         };
@@ -81,3 +83,16 @@ function readCookie(name) {
 	}
 	return null;
 }
+var input = document.getElementById("msg");
+input.addEventListener("keyup", function(event) {
+  if (event.key == "Enter") {
+    event.preventDefault();
+    document.getElementById("send").click();
+  }
+});
+// var scrollingElement = (document.scrollingElement || document.body);
+// scrollingElement.scrollTop = scrollingElement.scrollHeight;
+function gotoBottom(id){
+    var element = document.getElementById(id);
+    element.scrollTop = element.scrollHeight - element.clientHeight;
+ }

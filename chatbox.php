@@ -38,7 +38,7 @@
             </div>
             <div class="message">
     <input type="text" name="msg" id="msg" style="width: 90%; height:40px ; ">
-    <button type="button" class="btn" style="width: 10%; height:43px ; " onclick="send()">Send</button>
+    <button type="button" id="send" class="btn" style="width: 10%; height:43px ; " onclick="send()">Send</button>
             </div>
         </section>
     </body>

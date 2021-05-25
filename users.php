@@ -227,8 +227,8 @@ if($_COOKIE["password"] ==$password){
               <div class="center-div">
                 <button class="btn" onclick="verify()">Update</button>
             </div>
-            <div class="box">
-            <h2 style="border-bottom: solid 1px #e6e6e6; padding: 0.5rem;">Update profile</h2>
+            <div class="box" style= "margin:1rem;">
+            <h2 style="border-bottom: solid 1px #e6e6e6; padding: 0.5rem;">Change password</h2>
             <span id="pass-error"></span>
             <form action="updatepass.php" method="post">
             <div class="field">
